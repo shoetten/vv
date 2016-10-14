@@ -1030,6 +1030,16 @@ PHP"
 		if [ "$bedrock_init" = "true" ]; then
 			install_method="composer create-project roots/bedrock htdocs"
 			config="printf \"DB_NAME=$db_name\nDB_USER=wp\nDB_PASSWORD=wp\nDB_HOST=localhost\n\nWP_ENV=development\nWP_HOME=http://$domain\nWP_SITEURL=http://$domain/wp\" >> htdocs/.env"
+
+			# generate salts for .env file
+			declare -a keys=("AUTH_KEY" "SECURE_AUTH_KEY" "LOGGED_IN_KEY" "NONCE_KEY" "AUTH_SALT" "SECURE_AUTH_SALT" "LOGGED_IN_SALT" "NONCE_SALT")
+			for key in "${keys[@]}"
+			do
+				salt=$(LC_ALL=C tr -cd 'a-zA-Z0-9,;.:_#*+~!@$%&()=?{[]}|><-' < /dev/urandom | head -c 64)
+				salts="$salts$'\n'$key='$salt'"
+			done
+			config="$config; echo \"$salts\" >> htdocs/.env"
+			
 			core="$core --path=\"htdocs/web/wp\""
 		fi
 		__vv__hook "pre_write_vvv_init"
