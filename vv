@@ -897,7 +897,7 @@ __vv__create_site_files(){
 
 	if [ "$no_wp" = "false" ]; then
 		if [ "$bedrock_init" = "true" ]; then
-			printf "path: %s" "$web_root/web" > wp-cli.yml
+			printf "path: %s" "$web_root/wp" > wp-cli.yml
 		else
 			printf "path: %s" "$web_root" > wp-cli.yml
 		fi
