@@ -897,6 +897,7 @@ __vv__create_site_files(){
 
 	if [ "$no_wp" = "false" ]; then
 		if [ "$bedrock_init" = "true" ]; then
+			web_root="$web_root/web"
 			printf "path: %s" "$web_root/wp" > wp-cli.yml
 		else
 			printf "path: %s" "$web_root" > wp-cli.yml
@@ -1028,9 +1029,9 @@ PHP"
 		fi
 
 		if [ "$bedrock_init" = "true" ]; then
-			install_method="composer create-project roots/bedrock htdocs"
-			config="printf \"DB_NAME=$db_name\nDB_USER=wp\nDB_PASSWORD=wp\nDB_HOST=localhost\n\nWP_ENV=development\nWP_HOME=http://$domain\nWP_SITEURL=http://$domain/wp\" >> htdocs/.env"
-			core="$core --path=\"htdocs/web/wp\""
+			install_method="composer create-project roots/bedrock $web_root"
+			config="printf \"DB_NAME=$db_name\nDB_USER=wp\nDB_PASSWORD=wp\nDB_HOST=localhost\n\nWP_ENV=development\nWP_HOME=http://$domain\nWP_SITEURL=http://$domain/wp\" >> $web_root/.env"
+			core="$core --path=\"$web_root/web/wp\""
 		fi
 		__vv__hook "pre_write_vvv_init"
 		printf "\nCREATE DATABASE IF NOT EXISTS \`%s\`;\n GRANT ALL PRIVILEGES ON \`%s\`.* TO 'wp'@'localhost' IDENTIFIED BY 'wp';\n" "$db_name" "$db_name" >> "$path"/database/init-custom.sql
@@ -1776,7 +1777,6 @@ __vv__check_args() {
 				;;
 			-bed|--bedrock)
 				bedrock_init="true"
-				web_root="htdocs/web"
 				no_wp_with_db="true"
 				shift
 				;;
