@@ -1028,7 +1028,7 @@ PHP"
 		fi
 
 		if [ "$bedrock_init" = "true" ]; then
-			install_method="composer create-project roots/bedrock htdocs"
+			install_method="composer create-project shoetten/bedrock-gulp htdocs"
 			config="printf \"DB_NAME=$db_name\nDB_USER=wp\nDB_PASSWORD=wp\nDB_HOST=localhost\n\nWP_ENV=development\nWP_HOME=http://$domain\nWP_SITEURL=http://$domain/wp\" >> htdocs/.env"
 
 			# generate salts for .env file
