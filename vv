@@ -1035,10 +1035,10 @@ PHP"
 			declare -a keys=("AUTH_KEY" "SECURE_AUTH_KEY" "LOGGED_IN_KEY" "NONCE_KEY" "AUTH_SALT" "SECURE_AUTH_SALT" "LOGGED_IN_SALT" "NONCE_SALT")
 			for key in "${keys[@]}"
 			do
-				salt=$(LC_ALL=C tr -cd 'a-zA-Z0-9,;.:_#*+~!@$%&()=?{[]}|><-' < /dev/urandom | head -c 64)
-				salts="$salts$'\n'$key='$salt'"
+				salt=$(LC_ALL=C tr -cd 'a-zA-Z0-9,;.:_#*+~!@%&()=?{[]}|><-' < /dev/urandom | head -c 64)
+				salts="$salts\n$key='$salt'"
 			done
-			config="$config; echo \"$salts\" >> htdocs/.env"
+			config="$config; echo -e \"\n$salts\" >> htdocs/.env"
 			
 			core="$core --path=\"htdocs/web/wp\""
 		fi
