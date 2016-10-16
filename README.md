@@ -47,13 +47,7 @@
 
 ### OS X Installation
 
-If you have [Homebrew](http://brew.sh/) installed, you run the following in your terminal application:
-
-	$ brew install bradp/vv/vv
-
-Otherwise, clone this repositoy and edit your `$PATH` to include the `vv` core file:
-
-1. Clone this repo: `git clone https://github.com/bradp/vv.git`
+1. Clone this repo: `git clone https://github.com/shoetten/vv.git`
 1. Add the `vv` core script to your shell's `$PATH`:
     * If you're using `bash`: ``touch ~/.bash_profile && echo "export PATH=\$PATH:`pwd`/vv" >> ~/.bash_profile``
 
@@ -61,7 +55,7 @@ Otherwise, clone this repositoy and edit your `$PATH` to include the `vv` core f
 
 * Clone `vv` to a folder somewhere.
 
-    `$ git clone https://github.com/bradp/vv.git`
+    `$ git clone https://github.com/shoetten/vv.git`
 
 * Add that folder to your system path. See [here](http://windowsitpro.com/systems-management/how-can-i-add-new-folder-my-system-path) if you need help.
 
@@ -81,7 +75,7 @@ Props to [Vinsanity](https://github.com/Vinsanity) for these instructions. If yo
 
 * Clone vv into a folder.
 
-    `$ git clone https://github.com/bradp/vv.git`
+    `$ git clone https://github.com/shoetten/vv.git`
 
 * Access the directory that you cloned vv into.
 
